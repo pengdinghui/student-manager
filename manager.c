@@ -45,6 +45,7 @@ static void remove_stu(struct manager_info *info, size_t id)
 
 		if(cur_stu->id == id) {
 			list_del_init(pos);
+			free(cur_stu->name);
 			free(cur_stu);
 			printf("remove id = %u OK\n", id);
 			return;
@@ -99,6 +100,7 @@ void manager_info_destroy(struct manager_info *info)
 		list_del_init(pos);		
 
 		struct student *cur_stu = container_of(pos, struct student, list);
+		free(cur_stu->name);
 		free(cur_stu);
 	}
 	

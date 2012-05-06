@@ -30,7 +30,9 @@ static void insert_test_data(struct manager_info *info)
 		struct student *stu = (struct student *)
 			malloc(sizeof(struct student));
 		stu->id = STU_ARR[i].id;
-		stu->name = STU_ARR[i].name;
+		stu->name = (char *)malloc(strlen(STU_ARR[i].name) + 1);
+		strcpy(stu->name, STU_ARR[i].name);
+		
 		stu->gender = STU_ARR[i].gender;
 		stu->math_score = STU_ARR[i].math_score;
 		stu->english_score = STU_ARR[i].english_score;
