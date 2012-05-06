@@ -46,8 +46,12 @@ static void remove_stu(struct manager_info *info, size_t id)
 		if(cur_stu->id == id) {
 			list_del_init(pos);
 			free(cur_stu);
+			printf("remove id = %u OK\n", id);
+			return;
 		}
 	}
+
+	printf("cannot find the student!\n");
 }
 
 static void print_single_stu(struct student *stu)
@@ -58,8 +62,13 @@ static void print_single_stu(struct student *stu)
 
 static void print_all_stu(struct manager_info *info)
 {
+	if(info->head->next == info->head
+		&& info->head->prev == info->head) {
+		printf("No student!\n");
+		return;
+	}
+	
 	print_title();
-
 	struct list_head *pos = NULL;
 	list_for_each(pos, info->head) {
 		struct student *cur_stu = container_of(pos, struct student, list);
