@@ -51,7 +51,7 @@ static inline void list_del(struct list_head *node)
 static inline void list_del_init(struct list_head *node)
 {
 	list_del(node);
-	list_head_init(node);
+	init_list_head(node);
 }
 
 
